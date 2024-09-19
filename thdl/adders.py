@@ -5,11 +5,11 @@ from thdl.val import Val, ValList
 
 class Add4(Chip):
     def __init__(self):
-        super().__init__()
         self.full_adder_1 = FullAdder()
         self.full_adder_2 = FullAdder()
         self.full_adder_3 = FullAdder()
         self.full_adder_4 = FullAdder()
+        super().__init__()
 
     def __call__(self, carry_in: Val, a: ValList, b: ValList) -> dict[str, ValList | Val]:
         fa1 = self.full_adder_1(a=a[0], b=b[0], c=carry_in)
@@ -30,11 +30,11 @@ class Add4(Chip):
 
 class Add16(Chip):
     def __init__(self):
-        super().__init__()
         self.add4_1 = Add4()
         self.add4_2 = Add4()
         self.add4_3 = Add4()
         self.add4_4 = Add4()
+        super().__init__()
 
     def __call__(self, carry_in: Val, a: ValList, b: ValList) -> dict[str, ValList]:
         add4_1 = self.add4_1(carry_in=carry_in, a=a[12:], b=b[12:])

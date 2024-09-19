@@ -1,12 +1,12 @@
 from thdl.chip import Chip
-from thdl.gates import AndGate, OrGate, XorGate
+from thdl.gates import And, Or, Xor
 from thdl.val import Val
 
 
 class HalfAdder(Chip):
     def __init__(self):
-        self.xor_gate = XorGate()
-        self.and_gate = AndGate()
+        self.xor_gate = Xor()
+        self.and_gate = And()
 
     def __call__(self, a: Val, b: Val) -> dict[str, Val]:
         return {
@@ -19,7 +19,7 @@ class FullAdder(Chip):
     def __init__(self):
         self.half_adder_1 = HalfAdder()
         self.half_adder_2 = HalfAdder()
-        self.or_gate = OrGate()
+        self.or_gate = Or()
 
     def __call__(self, a: Val, b: Val, c: Val) -> dict[str, Val]:
         half_adder_1 = self.half_adder_1(a=a, b=b)
